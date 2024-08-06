@@ -1,6 +1,6 @@
 ---
 title: "Operate a runner for Forgejo actions with podman and systemd"
-date: 2024-08-01T12:09:00+02:00
+date: 2024-08-06T21:09:00+02:00
 author:
 - Michael Hanke
 tags:
@@ -97,7 +97,7 @@ sudo loginctl enable-linger forgejo-runner
 
 We will place the configuration of the runner at `/etc/forgejo-runner`, and
 make it writable for the `forgejo-runner` user, for now, because we will
-generate a default configuration in second.
+generate a default configuration in a second.
 
 ```
 sudo mkdir /etc/forgejo-runner
@@ -154,7 +154,7 @@ sed -e 's,file: .runner,file: .registration,' -e 's,docker_host:.*$,docker_host:
 
 Depending on the host's network setup, it may be necessary (or desirable) to
 adjust the `container.network` setting in this file. This can be set to `host`,
-`bridge`, or the name of of a specific network. If left empty (default) a custom,
+`bridge`, or the name of a specific network. If left empty (default) a custom,
 container-specific network is created automatically.
 
 Next, we can create the directory where the runner will place all its runtime
@@ -169,7 +169,7 @@ obtained via the site administration web UI, as shown in the following screensho
 
 {{< figure
     src="gettoken.webp"
-    caption="How to find the runner registration token in the site adminstration interface."
+    caption="How to find the runner registration token in the site administration interface."
     alt="Screen shows a sidebar on the left, with an 'Actions' menu item (marked with a '1'), a submenu item 'Runners' (marked with '2'), and a button 'Create new runner' on the top-right of the image (marked with a '3')."
     >}}
 
