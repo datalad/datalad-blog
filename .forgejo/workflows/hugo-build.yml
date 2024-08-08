@@ -42,9 +42,9 @@ jobs:
           curl --show-error --silent \
             --user mih:${{ secrets.PKG_UPLOAD_TOKEN }} \
             -X DELETE \
-            https://bits.ngln.eu/api/packages/mih/generic/blog.datalad.org-html/latest/site.tar.gz \
+            https://hub.datalad.org/api/packages/www/generic/blog.datalad.org-html/latest/site.tar.gz \
           || true
           curl --show-error --silent \
             --user mih:${{ secrets.PKG_UPLOAD_TOKEN }} \
             --upload-file build-archive/site.tar.gz \
-            https://bits.ngln.eu/api/packages/mih/generic/blog.datalad.org-html/latest/site.tar.gz
+            https://hub.datalad.org/api/packages/www/generic/blog.datalad.org-html/latest/site.tar.gz
