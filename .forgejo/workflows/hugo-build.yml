@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: https://bits.ngln.eu/mih/datalad-clone-action@main
+        uses: https://hub.datalad.org/forgejo/datalad-clone-action@main
       - name: Generate site
         run: |
           # this should (eventually be done by datalad-clone-action)
