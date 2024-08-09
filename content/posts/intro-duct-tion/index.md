@@ -11,7 +11,7 @@ tags:
 - statistics
 - resources
 cover:
-  image: airduct.webp
+  image: cover.webp
   relative: true
 description: >
   Collect even more useful information with `datalad-run` by pairing with `con-duct`
