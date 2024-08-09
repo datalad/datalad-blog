@@ -1,6 +1,6 @@
 ---
 title: 'Collecting runtime statistics and outputs with `con-duct` and `datalad-run`'
-date: 2024-07-30
+date: 2024-08-09
 author:
 - Austin Macdonald
 tags:
@@ -15,14 +15,13 @@ cover:
   relative: true
 description: >
   Collect even more useful information with `datalad-run` by pairing with `con-duct`
-showToc: true
 ---
 
 One of the challenges that I've experienced when attempting to replicate the execution of data analysis is quite simply that information regarding the required resources is sparse.
 For example, when submitting a SLURM job, how does one know the wallclock time to request, much less memory and CPU resources?
 
 To solve this problem we at the [Center for Open
-Neuroscience][https://centerforopenneuroscience.org/] have created a new tool, `con-duct` aka
+Neuroscience](https://centerforopenneuroscience.org) have created a new tool, `con-duct` aka
 `duct` to easily collect this information.
 When combined with `datalad-run`, `duct` collects crucial runtime information for future replication
 and reuse. 
