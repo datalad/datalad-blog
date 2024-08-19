@@ -26,6 +26,8 @@ The article is accompanied by a [workflow template](https://github.com/psychoinf
 This year, we organised [Distribits](https://distribits.live/), a conference about technologies for distributed data management.
 The talks were live-streamed on YouTube, and we promptly cut the long livestreams into a [playlist](https://www.youtube.com/playlist?list=PLEQHbPfpVqU6esVrgqjfYybY394XD2qf2), but given the conference theme it was clear from the beginning that we would want to publish the recordings as a [git-annex](https://git-annex.branchable.com/) repository, too.
 
+This is how [hub.datalad.org/distribits/recordings](https://hub.datalad.org/distribits/recordings) came to be -- a dataset with all the talk recordings, which can be downloaded or watched directly in the web browser, accompanied by all the code used in generating them.
+
 How exactly things would be done was also important to us. In particular, we wanted to:
 
 -   re-encode the YouTube videos using open codecs and container formats,
@@ -38,7 +40,6 @@ This was my first "real" project on the cluster, and my first "proper" implement
 
 What followed was a good deal of exploration of DataLad, git-annex, and HTCondor features, as well as video encoding and metadata details.
 Below, I will break down the process and share what I learned.
-The resulting dataset (videos and code to generate them) is available from [hub.datalad.org/distribits/recordings](https://hub.datalad.org/distribits/recordings).
 
 
 ## Video encoding decisions {#video-encoding-decisions}
