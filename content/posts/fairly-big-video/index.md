@@ -1,9 +1,22 @@
-+++
-title = "Fairly big video workflow"
-author = ["Michał Szczepanik"]
-date = 2024-08-16T18:30:00+02:00
-draft = false
-+++
+---
+title: "Fairly big video workflow"
+author:
+- Michał Szczepanik
+date: "2024-08-16T18:30:00+02:00"
+showtoc: true
+tags:
+- DataLad
+- git-annex
+- HTCondor
+- video editing
+- metadata
+description: >
+  TODO
+cover:
+  image: cover.webp
+  alt: TODO
+  relative: true
+---
 
 Two years ago, my colleagues published [FAIRly big: A framework for computationally reproducible processing of large-scale data](https://doi.org/10.1038/s41597-022-01163-2).
 In this paper, they describe how to partition a large analysis (their example: processing anatomical images of 42 thousand subjects from UK Biobank), using DataLad to provision data and capture provenance, so that individual results can be reproduced on a laptop, even though a cluster is needed to run the entire group analysis.
