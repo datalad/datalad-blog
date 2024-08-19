@@ -14,7 +14,7 @@ description: >
   TODO
 cover:
   image: cover.webp
-  alt: TODO
+  alt: "Screenshot of a video page of the dataset described in this post as hosted at https://hub.datalad.org/distribits/recordings, and the FFmpeg, HTCondor, git-annex, and DataLad logos on top."
   relative: true
 ---
 
