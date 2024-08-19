@@ -10,6 +10,7 @@ tags:
 - HTCondor
 - video editing
 - metadata
+- workflow
 description: >
   A scripted editing workflow to yield an annotated video collection, supercharged by git-annex metadata.
 cover:

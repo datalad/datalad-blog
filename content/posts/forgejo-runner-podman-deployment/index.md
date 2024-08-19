@@ -9,7 +9,7 @@ tags:
 - Git hosting
 - podman
 - systemd
-- workflows
+- workflow
 cover:
   image: cover.webp
   alt: A screenshot of Forgejo action runner status and result page, with the Forgejo, podman, and systemd logos on top.
