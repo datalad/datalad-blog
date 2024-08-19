@@ -11,7 +11,7 @@ tags:
 - video editing
 - metadata
 description: >
-  TODO
+  A scripted editing workflow to yield an annotated video collection, supercharged by git-annex metadata.
 cover:
   image: cover.webp
   alt: "Screenshot of a video page of the dataset described in this post as hosted at https://hub.datalad.org/distribits/recordings, and the FFmpeg, HTCondor, git-annex, and DataLad logos on top."
