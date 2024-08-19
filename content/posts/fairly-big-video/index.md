@@ -14,7 +14,7 @@ The talks were live-streamed on YouTube, and we promptly cut the long livestream
 
 How exactly things would be done was also important to us. In particular, we wanted to:
 
--   reencode the YouTube videos using open codecs and container formats,
+-   re-encode the YouTube videos using open codecs and container formats,
 -   include metadata (titles, speakers, license, etc.) both in the video container and as [git-annex metadata](https://git-annex.branchable.com/metadata/),
 -   record the video processing commands as [DataLad run records](https://handbook.datalad.org/en/latest/basics/101-108-run.html) for an informative and actionable git history.
 
@@ -44,7 +44,7 @@ For the container format we chose WebM, which is a limited subset of Matroska, a
 
 [Matroska metadata format specification](https://matroska.org/technical/tagging.html), (which also applies to webm) allows tagging different organization levels (think: track, album, ...), which can be inside or outside the file[^fn:2].
 With that mechanism, it was possible to add titles for both the talk and conference, in a way which was picked up by vlc and mpv media players, by using "chapter" (30) and "movie/episode" (50) level tags, respectively.
-It would have been more sematically correct to use "collection" (70) level for the conference, however vlc seems to fixate on levels 30/50 (probably because for audio files they correspond to track/album) and refuses to use others.
+It would have been more semantically correct to use "collection" (70) level for the conference, however vlc seems to fixate on levels 30/50 (probably because for audio files they correspond to track/album) and refuses to use others.
 
 Another practical concession was needed for the artist tag.
 The specification says: "Multiple items SHOULD never be stored as a list in a single TagString. If there is more than one tag of a certain type to be stored, then more than one SimpleTag SHOULD be used."
@@ -104,11 +104,11 @@ The main conceptual challenge was to break up the processing into three related 
 
 #### Inputs: command line and environment variables {#inputs-command-line-and-environment-variables}
 
-Because the long videos were accompanied by a table with information about talks (a tsv file), only two inputs were essential: relative path to the the collection directory (we anticipated storing videos from more events), and the number of the desired video clip (i.e. its row number in the table).
+Because the long videos were accompanied by a table with information about talks (a tsv file), only two inputs were essential: relative path to the collection directory (we anticipated storing videos from more events), and the number of the desired video clip (i.e. its row number in the table).
 The input file, cut points, and all required metadata would be read from the table.
 
 At first, I wanted the arguments to include the number of threads used for encoding, too.
-Hovever, this argument is semantically different than the other two (it describes how to arrive at the result, and not what the result will be), and encoding it in the run record would cause any rerun to use the same number of threads, which may not be desired.
+However, this argument is semantically different than the other two (it describes how to arrive at the result, and not what the result will be), and encoding it in the run record would cause any rerun to use the same number of threads, which may not be desired.
 
 Then I learned that Condor supports setting environment variables in the submit file.
 Not only that, it [sets some commonly used ones](https://htcondor.readthedocs.io/en/latest/users-manual/env-of-job.html#extra-environment-variables-htcondor-sets-for-jobs), such as `OMP_NUM_THREADS` by default.
@@ -179,7 +179,7 @@ Setting the audio track (`-c:a`) to mono (`-ac 1`) and lowering the bitrate (`-a
 In our case, the audio channels were identical, so using mono simply removed redundancy -- but it is also preferred for verbal content (in my experience things become not so nice for listening on headphones if the speaker sound happens to be placed off-center).
 
 Then (lines 28-31) comes the addition of metadata.
-I wrote a python script ([create_xml.py](https://hub.datalad.org/distribits/recordings/src/branch/master/code/create_xml.py)) to generate a required xml file on the fly (written into `/tmp` and thus not saved in the dataset)[^fn:12] and used that as an input to mkvpropedit, setting and overriting all existing tags (it is possible to set them on a per-stream basis, but this seemed not necessary).
+I wrote a Python script ([create_xml.py](https://hub.datalad.org/distribits/recordings/src/branch/master/code/create_xml.py)) to generate a required xml file on the fly (written into `/tmp` and thus not saved in the dataset)[^fn:12] and used that as an input to mkvpropedit, setting and overwriting all existing tags (it is possible to set them on a per-stream basis, but this seemed not necessary).
 
 
 ### DataLad orchestration: `video_job.sh` {#datalad-orchestration-video-job-dot-sh}
@@ -251,7 +251,7 @@ First (lines 18-21), we perform a temporary (ephemeral) clone using [annex priva
 This is a novelty compared to the FAIRly big workflow paper (which relied on the [git annex dead](https://git-annex.branchable.com/git-annex-dead/) mechanism instead).
 With the private setting, information about the newly-cloned location will be stored in a private journal under `.git/annex`, and not in the git-annex branch.
 This means we do not have to call `git annex dead here` before pushing, and we avoid cluttering the git-annex branch with information about dead clones [^fn:13].
-Because `datalad clone` combines `git clone` and `git annex init`, we first pass the config option on the command line, and write it to the local configuration later (see [this comment](https://git-annex.branchable.com/tips/cloning_a_repository_privately/#comment-2725ecbd413dffad080eab473787c530) and the following response under the private mode documentation page for how exactly that matters).
+Because `datalad clone` combines `git clone` and `git annex init`, we first pass the configuration option on the command line, and write it to the local configuration later (see [this comment](https://git-annex.branchable.com/tips/cloning_a_repository_privately/#comment-2725ecbd413dffad080eab473787c530) and the following response under the private mode documentation page for how exactly that matters).
 
 Next (lines 24-25), we set ourselves up for an octopus merge in the future, by switching to a new branch.
 The original FAIRly big workflow makes sure that the branch names are unique by including a job identifier passed from Condor, here we simply use the clip identifier.
@@ -320,7 +320,7 @@ Queue 1 arguments from seq 1 29 |
 
 Most of the content is specific to the condor scheduler.
 The parameter definitions can be found in the [condor_submit manpage](https://htcondor.readthedocs.io/en/latest/man-pages/condor_submit.html), and building the file is explained in the [Submitting a job](https://htcondor.readthedocs.io/en/latest/users-manual/submitting-a-job.html) tutorial.
-Let's focus on what matters in our context - and it is mostly parameterizing a job.
+Let's focus on what matters in our context - and it is mostly parametrizing a job.
 
 The CPU and memory requests (lines 1-6) are mostly just promises, and they are used to find matching machines.
 However, as explained earlier, Condor will set some environment variables [^fn:9] typically obeyed by multi-threaded programs, and we made sure to use one of them, `OMP_NUM_THREADS` when running ffmpeg.
@@ -335,7 +335,7 @@ Finally, we wrote that script so that it takes only one input argument, the inde
 We benefit from it now (line 30), by writing the simplest queue command (`Queue ... from seq`) [^fn:10].
 
 **Friction point** Condor could also run the given executable in a singularity container, and it is very easy to do so (by specifying `container_image`).
-So in theory we could use the regulad `datalad run` command (instead of `containers run`), and specify the container on Condor level.
+So in theory we could use the regular `datalad run` command (instead of `containers run`), and specify the container on Condor level.
 We could also include DataLad in that container, if it hadn't been available on our cluster.
 However, using `containers run` seems good for portability.
 
@@ -386,7 +386,7 @@ distribits2024/2024-04-05_12_unconference.webm
 
 Restructure the dataset with [metadata driven views](https://git-annex.branchable.com/tips/metadata_driven_views/).
 This is particularly interesting: it uses git branches, and because annexed files are usually symlinks, it is very fast.
-The example belows reorders into folders organized by date and then title:
+The example below reorders into folders organized by date and then title:
 
 
 ```nil
@@ -434,7 +434,7 @@ Queuing 29 jobs, each expected to last about an hour, and seeing half of them st
 [^fn:2]: For example, a music album can be split into several files, and each file can store metadata about both the contained track and the album it came from; respective titles are stored as two "title" tags with different target type values assigned. However, matroska container can also hold all tracks within a single file, with the same metadata logic.
 [^fn:3]: Metadata can also be added using ffmpeg, but it does not support multiple occurrences of a key, so there is no way to have multiple artists (other than concatenating them), or to have hierarchical titles (for both the talk and conference).
 [^fn:4]: Otherwise, git-annex shows a message with explanation ("This url is supported by youtube-dl, but youtube-dl could potentially access any address, and the configuration of annex.security.allowed-ip-addresses does not allow that."), and searching the [git-annex man page](https://git-annex.branchable.com/git-annex/) for "yt-dlp" helps clarify that it needs to be set to "all" because yt-dlp has no way of enforcing tighter restrictions.
-[^fn:5]: I discovered that mkvpropedit tries to be locale-aware, and crashes in a bare-bones container; including locales and generating the english one (matching the cluster) seemed to be the easiest way out
+[^fn:5]: I discovered that mkvpropedit tries to be locale-aware, and crashes in a bare-bones container; including locales and generating the English one (matching the cluster) seemed to be the easiest way out
 [^fn:6]: See [Computational reproducibility with software containers](https://handbook.datalad.org/r?containers) chapter of the DataLad handbook for a thorough introduction.
 [^fn:7]: "This builtin is so complicated that it deserves its own section", starts the bash manual section about [The Set Builtin](https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html)
 [^fn:8]: Note that this is a parameter provided to the encoder; I could not find a way to effectively limit CPU usage with ffmpeg's own arguments. The full list of [SVT-AV1 Parameters](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/Parameters.md) can be found in SVT-AV1 docs. 
