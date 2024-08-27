@@ -8,12 +8,11 @@ tags:
 - Forgejo
 - git-annex
 cover:
-  image: cover.png
-  alt:
+  image: cover.webp
+  alt: "A screenshot of https://hub.datalad.org/hcp-openaccess, and the Forgejo, git-annex, and DataLad logos on top."
   relative: true
-# important bits should be within the first 110 chars of the description
 description: >
-  TODO
+  Looking into the performance and demands of Forgejo when hosting thousands of DataLad datasets
 ---
 
 One scenario where DataLad shines is managing datasets that are larger than
