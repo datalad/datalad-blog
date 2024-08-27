@@ -59,7 +59,7 @@ on machines that have no git-annex installed. But they are a bit of a black whol
 because they lack a built-in ability to browse or search them.
 
 A Forgejo-aneksajo instance -- theoretically -- provides a much nicer
-environment for hosting such large dataset built from many components. Git-annex is
+environment for hosting such a large dataset built from many components. Git-annex is
 immediately available, no need for custom implementations.  There is a nice UI
 that promises convenient browsing, and all the other goodies.  The big question
 is:
@@ -68,8 +68,8 @@ How well can Forgejo handle this amount of repositories?
 
 ## Pushing the full dataset to Forgejo-aneksajo
 
-Let's start with the result: This [organization on
-hub.datalad.org](https://hub.datalad.org/hcp-openaccess) holds to full HCP1200
+Let's start with the result: [This organization on
+hub.datalad.org](https://hub.datalad.org/hcp-openaccess) holds the full HCP1200
 DataLad dataset. The [root dataset](https://hub.datalad.org/hcp-openaccess/hcp1200)
 (or superdataset) is the entry point to ~4500 subdatasets. Each and every single
 one of the 15 million file records is reachable via the Forgejo web UI!
@@ -138,7 +138,7 @@ MRI data of participant 100206.
 
 So how did it go? Once completed
 
-- the bare repositories of the `hcp-openaccess` organization on hub.datalad.org weighed 20.7GB
+- the bare Git repositories of the `hcp-openaccess` organization on hub.datalad.org weighed 20.7GB
 - the Forgejo SQLite database (`gitea/data/gitea.db`) grew from an initial 3.1MB to a moderate 57.5MB
 
 This appears to be a negligible overhead.
@@ -171,7 +171,7 @@ also showed a similarly lean resource footprint.
 ## Conclusions
 
 Everything worked smoothly. There were no indications of performance issues,
-neither during the creation procedure, nor after the instances was populated.
+neither during the creation procedure, nor after the instance was populated.
 
 If anything could cause problems, it would be listing Git trees (directories)
 with many entries. A preliminary test with a different dataset that contains
