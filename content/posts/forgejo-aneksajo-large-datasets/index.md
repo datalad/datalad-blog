@@ -122,7 +122,7 @@ there was no API interaction necessary for establishing 4500 new projects. Just
 adding a remote and git-push was sufficient.
 
 As a side note: I used `git push` rather than `datalad push`, because there are
-not annex keys to process or upload. As mentioned before, all file content is
+no annex keys to process or upload. As mentioned before, all file content is
 in the HCP S3 bucket.
 
 ## Performance and load
