@@ -42,7 +42,7 @@ This separation of file content and version-controlled access pointers made it
 possible to host [the dataset on
 GitHub](https://github.com/datalad-datasets/human-connectome-project-openaccess),
 and also to create special purpose views or slices of the dataset, such as for
-the [functional magnetic reasonance imaging data of the participants watching
+the [functional magnetic resonance imaging data of the participants watching
 movie clips](https://github.com/datalad-datasets/hcp_movies) during brain
 imaging.
 
@@ -55,7 +55,7 @@ in a [RIA
 store](https://handbook.datalad.org/en/latest/beyond_basics/101-147-riastores.html)
 on a different server. Such a store is basically a collection of bare
 repositories with an annex and some additional features. They can even be put
-on machines that have no git-annex installed. But they are a bit of a black whole,
+on machines that have no git-annex installed. But they are a bit of a black hole,
 because they lack a built-in ability to browse or search them.
 
 A Forgejo-aneksajo instance -- theoretically -- provides a much nicer
