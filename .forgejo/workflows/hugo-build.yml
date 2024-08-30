@@ -16,12 +16,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: https://hub.datalad.org/forgejo/datalad-clone-action@main
+        uses: https://hub.datalad.org/forgejo/datalad-clone-action@v1
+        with:
+          recursive: true
+          get_content: themes content
       - name: Generate site
-        run: |
-          # this should (eventually be done by datalad-clone-action)
-          git submodule update --init --recursive
-          hugo
+        run: hugo
       - name: Package site
         run: tar -cvzf site.tar.gz -C public .
       - uses: actions/upload-artifact@v3
