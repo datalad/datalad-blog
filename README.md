@@ -8,7 +8,7 @@ Visit the blog at: https://blog.datalad.org
 
 ## Contribute an article
 
-The contribute an article, clone this DataLad dataset. If you you have Hugo
+To contribute an article, clone this DataLad dataset. If you have Hugo
 installed, you could follow [their instruction to create new
 content](https://gohugo.io/commands/hugo_new_content/). Otherwise, create a new
 directory under `content/posts/`. The name of the directory will be the
@@ -18,6 +18,7 @@ article. Inside that directory, create an `index.md` file.
 Include front matter at the top of the file. Here is a starting point:
 
 ```yaml
+---
 title: 'A blog on data management and DataLad'
 date: 2024-07-11T20:28:47+02:00
 author:
