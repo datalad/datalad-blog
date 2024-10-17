@@ -29,3 +29,27 @@ disableShare: false
 # no summary shown at the top
 hideSummary: false
 ---
+
+[//]: # (todo: A light hearted introduction)
+Ever wondered what datasets are out there on the web managed, or "touched", by
+DataLad? Can any of those that be useful to you? DataLad-Registry is here to help.
+DataLad-Registry is a service that maintains up-to-date information on an expanding
+collection of datasets, currently numbering over ten thousand. It automatically
+registers datasets from various online sources, extracts metadata, and keeps both the
+datasets and their metadata current. DataLad-Registry offers search functionalities,
+including metadata-based searches, accessible through both a web interface and a RESTful
+API.
+
+[//]: # (todo: Introduce core goals and guiding principles of DataLad-Registry)
+
+[//]: # (todo: Illustrate, briefly how datasets are automatically registered and their metadata extracted by different extrator.)
+
+[//]: # (todo: Demon the search functionalities &#40;using a screenshot&#41; of the syntax page, and doing some searches.)
+
+[//]: # (todo: Showcase the access to the RESTful API)
+
+[//]: # (todo: Illustrating the underlying architecture of DataLad-Registry and point to the github repo for details about setting up a local instance.)
+
+[//]: # (todo: Discuss the future development plans of DataLad-Registry, possibly)
+
+[//]: # (todo: Provide a brief conclusion)
