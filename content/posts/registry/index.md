@@ -55,12 +55,14 @@ list the sources
 list the extractors (which can be extended or add new ones)
 [//]: # (todo: Demon the search functionalities &#40;using a screenshot&#41; of the syntax page, and doing some searches.)
 
-[//]: # (todo: Showcase the access to the RESTful API)
+[//]: # (todo: just mention that RESTful API is availabe at /openapi)
 
 [//]: # (todo: point to the github repo for details about setting up a local instance.)
 usecase: add private repos and extract metadata
 
 [//]: # (todo: Discuss the future development plans of DataLad-Registry, possibly)
+to have more extractors run for metadata extractions
+possible future usecases
 
 [//]: # (todo: Provide a brief conclusion)
 
