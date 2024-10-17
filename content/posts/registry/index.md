@@ -54,6 +54,7 @@ extendable extractors
 list the sources
 list the extractors (which can be extended or add new ones)
 [//]: # (todo: Demon the search functionalities &#40;using a screenshot&#41; of the syntax page, and doing some searches.)
+mention that statistics of each search is available
 
 [//]: # (todo: just mention that RESTful API is availabe at /openapi)
 
