@@ -4,6 +4,7 @@ date: 2024-10-13T18:17:28-07:00
 author:
   - Isaac To
   - Austin Macdonald
+  - Yaroslav O Halchenko
 tags:
   - DataLad
   - DataLad-Registry
