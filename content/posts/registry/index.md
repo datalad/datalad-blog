@@ -69,13 +69,19 @@ The first four extractors are provided through the [datalad-metalad](https://git
 
 When you visit the DataLad Registry at [https://registry.datalad.org/](https://registry.datalad.org/), you'll be greeted by the web UI of the registry.
 
-![][image1]
+{{< figure
+src="landing-page.png"
+alt="The landing page of the public instance of DataLad-Registry"
+    >}}
 
 By default, this page shows you a list of all registered datasets in descending order of when they were last updated, and in this order, the list tells you the latest activities in the registered DataLad datasets.
 
 The lower left corner of the web UI displays **statistics** of the datasets matching the current search criteria. Since there is no search query provided at this point, the datasets are all the datasets registered. If you click the "Show details" button at the bottom of the web UI, you'll see more information.
 
-![][image2]
+{{< figure
+src="stats-of-entire-registry.png"
+alt="An embedded page showing the detailed stats of the entire registry"
+    >}}
 
 In particular, you will see information such as how many unique DataLad datasets the registry is currently tracking, and the total number and size of the annexed files in these datasets.
 
@@ -85,50 +91,100 @@ Every DataLad dataset has a UUID attached to it, and every clone shares the same
 
 A description of the search syntax in DataLad-Registry is available by clicking the "Show search query syntax" button.
 
-![][image3]
+{{< figure
+src="search-query-syntax.png"
+alt="An embedded page showing the search query syntax"
+    >}}
 
 ### Example: Simple singular word search {#example:-simple-singular-word-search}
 
 Let's do a search with a query of a singular word, `haxby`.
 
-![][image4]
+{{< figure
+src="haxby-search-result.png"
+alt="The page with the single-word search result of `haxby` "
+    >}}
 
 This searches for the substring `haxby` across all the searchable fields, `"url"`, `"ds_id"`, `"head"`, `"head_describe"`, `"branches"`, `"tags"`, and `"metadata"`. As you can see in the search result, the statistics at the left corner have been adjusted. Click the "Show details" button, and you will see that the result consists of 20 unique DataLad datasets with 23,278 annexed files of 448.5 GB.  
-![][image5]
+
+
+{{< figure
+src="haxby-search-result-stats.png"
+alt="An embedded page with stats of the single-word search result of `haxby` "
+    >}}
 
 ### Example: Finding clones of a dataset {#example:-finding-clones-of-a-dataset}
 
 From the search result of the search for `haxby`, click on the OpenNeuro dataset ds001297 by its DataLad dataset ID, `2e429bfe-8862-11e8-98ed-0242ac120010`.  
-![][image6]
+
+
+{{< figure
+src="haxby-search-result-pick-dataset.png"
+alt="Figure directing to click on the dataset with DataLad dataset ID, `2e429bfe-8862-11e8-98ed-0242ac120010`, in the single-word search result page"
+    >}}
 
 This will cause a search for datasets with DataLad dataset ID, `2e429bfe-8862-11e8-98ed-0242ac120010`, generating a field-restricted search query of `ds_id:2e429bfe-8862-11e8-98ed-0242ac120010`.  
-![][image7]  
+
+
+{{< figure
+src="locate-forks.png"
+alt="A page showing the forks of DataLad dataset with ID, `2e429bfe-8862-11e8-98ed-0242ac120010`"
+    >}}
+
 Thanks to the persistence of DataLad dataset ID, we have just located all the forks of a particular DataLad datasets in DataLad-Registry.
 
 ### Example: Find where dataset was used (included as a subdataset) {#example:-find-where-dataset-was-used}
 
 Let's do a search with a query of another singular word, `container`.  
-![][image8]
+
+
+{{< figure
+src="container-search-result.png"
+alt="A page showing the result of the single-word search of `container`"
+    >}}
 
 ### 
 
 This search locates the ReproNim/containers dataset which provides "a collection of popular computational tools provided within ready to use containerized environments". We can, of course, find all the forks of this dataset by clicking on its DataLad dataset ID, `b02e63c2-62c1-11e9-82b0-52540040489c`, as demonstrated in the last example. Using logical operators and restricting searchable metadata, we can locate datasets that use the ReproNim/containers dataset as a subdataset. We can do this using a search query of `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`.  
 The query, `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID `b02e63c2-62c1-11e9-82b0-52540040489c` and filters out those that possesses DataLad dataset ID of `b02e63c2-62c1-11e9-82b0-52540040489c`.  
-![][image9]  
-Above is the metalad_core metadata extracted from the dataset at [https://github.com/spatialtopology/ds005256.git](https://github.com/spatialtopology/ds005256.git).  
-![][image10]
+
+
+{{< figure
+src="metalad_core_metadata.png"
+caption="The `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git."
+alt="A page showing the `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git"
+    >}}
+
+
+{{< figure
+src="repronim-as-subdataset.png"
+caption="Search with query `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`"
+alt="A page showing the result of a search with the query `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`"
+    >}}
 
 ### Example: Find BIDS datasets not in OpenNeuro {#example:-find-bids-datasets-not-in-openneuro}
 
 Similarly, by leveraging metadata extracted by the `bids_dataset` metadata extractor, we can find BIDS datasets that are not currently available on [OpenNeuro](https://openneuro.org/) using the query `metadata[bids_dataset]:"" AND NOT url:openneuro`.
 
 `metadata[bids_dataset]:""` finds all the BIDS datasets and `NOT url:openneuro` filters out those that are currently on [OpenNeuro](https://openneuro.org/).  
-![][image11]
+
+
+{{< figure
+src="bids-not-on-openneuro.png"
+caption="Search with query `metadata[bids_dataset]:\"\" AND NOT url:openneuro`"
+alt="A page showing the result of a search with the query `metadata[bids_dataset]:\"\" AND NOT url:openneuro`"
+    >}}
 
 ## RESTful API {#restful-api}
 
 Besides the web UI, Datalad-Registry has a public facing RESTful API, and its interactive documentation is available at [https://registry.datalad.org/openapi/](https://registry.datalad.org/openapi/) with three different interfaces to choose from, Swagger, ReDoc, and RapiDoc[^3].  
-![][image12]
+
+
+{{< figure
+src="API-doc-interfaces.png"
+caption="Interactive API documentation interfaces."
+alt="A page showing the interactive API documentation interfaces"
+    >}}
 
 This API has an OpenAPI V3 schema (available at [https://registry.datalad.org/openapi/openapi.json](https://registry.datalad.org/openapi/openapi.json)). Developers can generate a client from it using [OpenAPI Generator](https://openapi-generator.tech/).
 
@@ -140,10 +196,21 @@ The API currently supports the following operations.
 2. Querying for datasets   
 3. Fetching datasets and metadata by internal IDs
 
-![][image13]
+
+{{< figure
+src="API-endpoints.png"
+caption="API endpoints shown in Swagger"
+alt="A page showing Swagger, an interactive documentation interface, displaying the supported API endpoints"
+    >}}
 
 Registration of new datasets is currently disabled in our public-facing instance of DataLad-Registry located at [https://registry.datalad.org](https://registry.datalad.org). However, you can choose to make that available in your own instance of DataLad-Registry should you launch one. The querying operation provided through the API supports all the features provided by the search function in the web UI. Additionally, it allows further restrictions in the query and provides an option for including metadata in search results.  
-![][image14]
+
+
+{{< figure
+src="API-dataset-urls-endpoint.png"
+caption="A detailed view of the `dataset-urls` endpoint."
+alt="A page showing detailed view of the `dataset-urls` endpoint"
+    >}}
 
 ## Deploying your own instance of DataLad Registry {#deploying-your-own-instance-of-datalad-registry}
 
@@ -162,7 +229,13 @@ All service components are specified in a Docker Compose file, making it easy to
 ## Read only instances {#read-only-instances}
 
 Multiple [read-only](https://github.com/datalad/datalad-registry?tab=readme-ov-file#read-only-mode) DataLad-Registry instances can be set up alongside a fully featured one. Such instances consist of only the web and DB services, and they are always in sync with the fully featured instance. With read-only instances, the fully featured instance is protected from potential abuse and the workload is split. In fact, the instance you interact with at [registry.datalad.org](http://registry.datalad.org) is a read-only instance.  
-![][image15]
+
+
+{{< figure
+src="public-instance-setup.png"
+caption="The public instance of DataLad-Registry is available through a read-only instance."
+alt="A figure depicting that the public instance of DataLad-Registry is available through a read-only instance"
+    >}}
 
 # Join/Contribute {#join-or-contribute}
 
