@@ -244,10 +244,10 @@ Do you have a collection of datasets that you need to run periodic tasks on? Or 
 # References
 
 - 2024 Distribits talk:  
-  - [📺 YouTube](https://youtu.be/_McJ1BtLsiQ?si=2nGc_szgLxW8dZeV)  
-  - [🎥 hub.datalad.org](https://hub.datalad.org/distribits/recordings/src/branch/master/distribits2024/2024-04-05_06_to_registry.webm)   
-- [💻 GitHub](https://github.com/datalad/datalad-registry)  
-- [🌐 Live instance](https://registry.datalad.org/)
+  - 📺 [YouTube](https://youtu.be/_McJ1BtLsiQ?si=2nGc_szgLxW8dZeV)  
+  - 🎥 [hub.datalad.org](https://hub.datalad.org/distribits/recordings/src/branch/master/distribits2024/2024-04-05_06_to_registry.webm)   
+- 💻 [GitHub](https://github.com/datalad/datalad-registry)  
+- 🌐 [Live instance](https://registry.datalad.org/)
 
 [^1]:  If a registered dataset is updated, DataLad-Registry will automatically update the local copy of the dataset and re-extract the corresponding metadata.
 
