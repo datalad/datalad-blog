@@ -32,7 +32,7 @@ hideSummary: false
 ---
 
 
-[**DataLad**](https://www.datalad.org/) provides a platform for managing and uniformly accessing data resources. It also captures basic provenance information about data results within Git repository commits. However, discovering DataLad datasets or Git repositories that DataLad has operated on can be challenging. They can be shared anywhere online, including popular Git hosting platforms, such as [GitHub](https://github.com/), generic file hosting platforms such as [OSF](https://osf.io/), neuroscience platforms, such as [GIN](https://gin.g-node.org/), or they can even be available only within the internal network of an organization or just one particular server. We built [DataLad-Registry](https://registry.datalad.org) to address some of the problems in locating datasets and finding useful information about them. (For convenience, we will use the term "dataset", for the rest of this blog, to refer to a DataLad dataset or a Git repo that has been "touched" by the \`datalad run\` command, i.e. one that has "DATALAD RUNCMD" in a commit message.)
+[**DataLad**](https://www.datalad.org/) provides a platform for managing and uniformly accessing data resources. It also captures basic provenance information about data results within Git repository commits. However, discovering DataLad datasets or Git repositories that DataLad has operated on can be challenging. They can be shared anywhere online, including popular Git hosting platforms, such as [GitHub](https://github.com/), generic file hosting platforms such as [OSF](https://osf.io/), neuroscience platforms, such as [GIN](https://gin.g-node.org/), or they can even be available only within the internal network of an organization or just one particular server. We built [DataLad-Registry](https://registry.datalad.org) to address some of the problems in locating datasets and finding useful information about them. (For convenience, we will use the term "dataset", for the rest of this blog, to refer to a DataLad dataset or a Git repo that has been "touched" by the `datalad run` command, i.e. one that has "DATALAD RUNCMD" in a commit message.)
 
 In this post, we will introduce you to DataLad-Registry both as a publicly available service and as software you can deploy yourself.
 
@@ -101,7 +101,7 @@ This searches for the substring "haxby" across all the searchable fields, "url",
 From the search result of the search for "haxby", click on the OpenNeuro dataset ds001297 by its DataLad dataset ID, 2e429bfe-8862-11e8-98ed-0242ac120010.  
 ![][image6]
 
-This will cause a search for datasets with DataLad dataset ID, 2e429bfe-8862-11e8-98ed-0242ac120010, generating a field-restricted search query of \`ds\_id:2e429bfe-8862-11e8-98ed-0242ac120010\`.  
+This will cause a search for datasets with DataLad dataset ID, 2e429bfe-8862-11e8-98ed-0242ac120010, generating a field-restricted search query of `ds\_id:2e429bfe-8862-11e8-98ed-0242ac120010`.  
 ![][image7]  
 Thanks to the persistence of DataLad dataset ID, we have just located all the forks of a particular DataLad datasets in DataLad-Registry.
 
@@ -112,17 +112,17 @@ Let's do a search with a query of another singular word, "container".
 
 ### 
 
-This search locates the ReproNim/containers dataset which provides "a collection of popular computational tools provided within ready to use containerized environments". We can, of course, find all the forks of this dataset by clicking on its DataLad dataset ID, 	"b02e63c2-62c1-11e9-82b0-52540040489c", as demonstrated in the last example. Using logical operators and restricting searchable metadata, we can locate datasets that use the ReproNim/containers dataset as a subdataset. We can do this using a search query of \`metadata\[metalad\_core\]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds\_id:b02e63c2-62c1-11e9-82b0-52540040489c\`.  
-The query, \`metadata\[metalad\_core\]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds\_id:b02e63c2-62c1-11e9-82b0-52540040489c\`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID "b02e63c2-62c1-11e9-82b0-52540040489c" and filters out those that possesses DataLad dataset ID of "b02e63c2-62c1-11e9-82b0-52540040489c".  
+This search locates the ReproNim/containers dataset which provides "a collection of popular computational tools provided within ready to use containerized environments". We can, of course, find all the forks of this dataset by clicking on its DataLad dataset ID, 	"b02e63c2-62c1-11e9-82b0-52540040489c", as demonstrated in the last example. Using logical operators and restricting searchable metadata, we can locate datasets that use the ReproNim/containers dataset as a subdataset. We can do this using a search query of `metadata\[metalad\_core\]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds\_id:b02e63c2-62c1-11e9-82b0-52540040489c`.  
+The query, `metadata\[metalad\_core\]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds\_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID "b02e63c2-62c1-11e9-82b0-52540040489c" and filters out those that possesses DataLad dataset ID of "b02e63c2-62c1-11e9-82b0-52540040489c".  
 ![][image9]  
 Above is the metalad\_core metadata extracted from the dataset at [https://github.com/spatialtopology/ds005256.git](https://github.com/spatialtopology/ds005256.git).  
 ![][image10]
 
 ### Example: Find BIDS datasets not in OpenNeuro {#example:-find-bids-datasets-not-in-openneuro}
 
-Similarly, by leveraging metadata extracted by the "bids\_dataset" metadata extractor, we can find BIDS datasets that are not currently available on [OpenNeuro](https://openneuro.org/) using the query \`metadata\[bids\_dataset\]:"" AND NOT url:openneuro\`.
+Similarly, by leveraging metadata extracted by the "bids\_dataset" metadata extractor, we can find BIDS datasets that are not currently available on [OpenNeuro](https://openneuro.org/) using the query `metadata\[bids\_dataset\]:"" AND NOT url:openneuro`.
 
-\`metadata\[bids\_dataset\]:""\` finds all the BIDS datasets and \`NOT url:openneuro\` filters out those that are currently on [OpenNeuro](https://openneuro.org/).  
+`metadata\[bids\_dataset\]:""` finds all the BIDS datasets and `NOT url:openneuro` filters out those that are currently on [OpenNeuro](https://openneuro.org/).  
 ![][image11]
 
 ## RESTful API {#restful-api}
@@ -157,7 +157,7 @@ If you want to benefit from DataLad-Registry for your datasets without making th
 6. **Monitor ([Flower](https://flower.readthedocs.io/en/latest/)):** Provides a real-time, web-based interface to display the progress, status, and results of Celery tasks.  
 7. **Backend ([Redis](https://redis.io/)):** Acts as a backend to store task results.
 
-All service components are specified in a Docker Compose file, making it easy to [bring up](https://github.com/datalad/datalad-registry?tab=readme-ov-file#testing-and-development-setup) an instance of DataLad-Registry using the \`podman-compose\` command.
+All service components are specified in a Docker Compose file, making it easy to [bring up](https://github.com/datalad/datalad-registry?tab=readme-ov-file#testing-and-development-setup) an instance of DataLad-Registry using the `podman-compose` command.
 
 ## Read only instances {#read-only-instances}
 
