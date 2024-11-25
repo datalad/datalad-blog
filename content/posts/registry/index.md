@@ -32,31 +32,6 @@ hideSummary: false
 ---
 
 
-
-[**Goals and Guiding Principle:	1**](#goals-and-guiding-principle)
-
-[**Current State:	2**](#current-state)
-
-[Search functionality:	4](#search-functionality)
-
-[Example: Simple singular word search	5](#example:-simple-singular-word-search)
-
-[Example: Finding clones of a dataset	6](#example:-finding-clones-of-a-dataset)
-
-[Example: Find where dataset was used (included as subdataset)	7](#example:-find-where-dataset-was-used-\(included-as-subdataset\))
-
-[Example: Find BIDS datasets not in OpenNeuro	10](#example:-find-bids-datasets-not-in-openneuro)
-
-[RESTful API:	11](#restful-api)
-
-[Supported API operations:	11](#supported-api-operations)
-
-[Service Components:	14](#deploying-your-own-instance-of-datalad-registry)
-
-[Deployment:	14](#read-only-instances)
-
-[**Join/Contribute:	15**](#join/contribute)
-
 [**DataLad**](https://www.datalad.org/) provides a platform for managing and uniformly accessing data resources. It also captures basic provenance information about data results within Git repository commits. However, discovering DataLad datasets or Git repositories that DataLad has operated on can be challenging. They can be shared anywhere online, including popular Git hosting platforms, such as [GitHub](https://github.com/), generic file hosting platforms such as [OSF](https://osf.io/), neuroscience platforms, such as [GIN](https://gin.g-node.org/), or they can even be available only within the internal network of an organization or just one particular server. We built [DataLad-Registry](https://registry.datalad.org) to address some of the problems in locating datasets and finding useful information about them. (For convenience, we will use the term "dataset", for the rest of this blog, to refer to a DataLad dataset or a Git repo that has been "touched" by the \`datalad run\` command, i.e. one that has "DATALAD RUNCMD" in a commit message.)
 
 In this post, we will introduce you to DataLad-Registry both as a publicly available service and as software you can deploy yourself.
