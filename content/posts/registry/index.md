@@ -105,7 +105,7 @@ This will cause a search for datasets with DataLad dataset ID, 2e429bfe-8862-11e
 ![][image7]  
 Thanks to the persistence of DataLad dataset ID, we have just located all the forks of a particular DataLad datasets in DataLad-Registry.
 
-### Example: Find where dataset was used (included as subdataset) {#example:-find-where-dataset-was-used-(included-as-subdataset)}
+### Example: Find where dataset was used (included as subdataset) {#example:-find-where-dataset-was-used}
 
 Let's do a search with a query of another singular word, "container".  
 ![][image8]
@@ -164,7 +164,7 @@ All service components are specified in a Docker Compose file, making it easy to
 Multiple [read-only](https://github.com/datalad/datalad-registry?tab=readme-ov-file#read-only-mode) DataLad-Registry instances can be set up alongside a fully featured one. Such instances consist of only the web and DB services, and they are always in sync with the fully featured instance. With read-only instances, the fully featured instance is protected from potential abuse and the workload is split. In fact, the instance you interact with at [registry.datalad.org](http://registry.datalad.org) is a read-only instance.  
 ![][image15]
 
-# Join/Contribute {#join/contribute}
+# Join/Contribute {#join-or-contribute}
 
 Do you have a collection of datasets that you need to run periodic tasks on? Or do you have interesting metadata to extract? Please file an issue at [https://github.com/datalad/datalad-registry/issues](https://github.com/datalad/datalad-registry/issues), and we can help you make those datasets and their metadata available through DataLad-Registry.
 
