@@ -105,7 +105,7 @@ This will cause a search for datasets with DataLad dataset ID, 2e429bfe-8862-11e
 ![][image7]  
 Thanks to the persistence of DataLad dataset ID, we have just located all the forks of a particular DataLad datasets in DataLad-Registry.
 
-### Example: Find where dataset was used (included as subdataset) {#example:-find-where-dataset-was-used}
+### Example: Find where dataset was used (included as a subdataset) {#example:-find-where-dataset-was-used}
 
 Let's do a search with a query of another singular word, "container".  
 ![][image8]
