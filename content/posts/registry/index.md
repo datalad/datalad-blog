@@ -57,10 +57,10 @@ In design and implementation, we embrace automation as a guiding principle. Data
 
 DataLad-Registry is a publicly available service accessible at [https://registry.datalad.org/](https://registry.datalad.org/). It maintains up-to-date information on an expanding collection of datasets, currently numbering over thirteen thousand, including those on [datasets.datalad.org](http://datasets.datalad.org) and those on GitHub and GIN[^2] discovered by the [datalad-usage-dashboard](https://github.com/datalad/datalad-usage-dashboard). It makes metadata extracted by the following five extractors available.
 
-1. `"metalad\_core"`  
-2. `"metalad\_studyminimeta"`  
-3. `"datacite\_gin"`  
-4. `"bids\_dataset"`  
+1. `"metalad_core"`  
+2. `"metalad_studyminimeta"`  
+3. `"datacite_gin"`  
+4. `"bids_dataset"`  
 5. `"dandi"` 
 
 The first four extractors are provided through the [datalad-metalad](https://github.com/datalad/datalad-metalad) extension, and the last is a builtin extractor which provides metadata for datasets in the DANDI archive.
@@ -93,7 +93,7 @@ Let's do a search with a query of a singular word, "haxby".
 
 ![][image4]
 
-This searches for the substring "haxby" across all the searchable fields, "url", "ds\_id", "head", "head\_describe", "branches", "tags", and "metadata". As you can see in the search result, the statistics at the left corner have been adjusted. Click the "Show details" button, and you will see that the result consists of 20 unique DataLad datasets with 23,278 annexed files of 448.5 GB.  
+This searches for the substring "haxby" across all the searchable fields, "url", "ds_id", "head", "head_describe", "branches", "tags", and "metadata". As you can see in the search result, the statistics at the left corner have been adjusted. Click the "Show details" button, and you will see that the result consists of 20 unique DataLad datasets with 23,278 annexed files of 448.5 GB.  
 ![][image5]
 
 ### Example: Finding clones of a dataset {#example:-finding-clones-of-a-dataset}
@@ -101,7 +101,7 @@ This searches for the substring "haxby" across all the searchable fields, "url",
 From the search result of the search for "haxby", click on the OpenNeuro dataset ds001297 by its DataLad dataset ID, 2e429bfe-8862-11e8-98ed-0242ac120010.  
 ![][image6]
 
-This will cause a search for datasets with DataLad dataset ID, 2e429bfe-8862-11e8-98ed-0242ac120010, generating a field-restricted search query of `ds\_id:2e429bfe-8862-11e8-98ed-0242ac120010`.  
+This will cause a search for datasets with DataLad dataset ID, 2e429bfe-8862-11e8-98ed-0242ac120010, generating a field-restricted search query of `ds_id:2e429bfe-8862-11e8-98ed-0242ac120010`.  
 ![][image7]  
 Thanks to the persistence of DataLad dataset ID, we have just located all the forks of a particular DataLad datasets in DataLad-Registry.
 
@@ -112,17 +112,17 @@ Let's do a search with a query of another singular word, "container".
 
 ### 
 
-This search locates the ReproNim/containers dataset which provides "a collection of popular computational tools provided within ready to use containerized environments". We can, of course, find all the forks of this dataset by clicking on its DataLad dataset ID, 	"b02e63c2-62c1-11e9-82b0-52540040489c", as demonstrated in the last example. Using logical operators and restricting searchable metadata, we can locate datasets that use the ReproNim/containers dataset as a subdataset. We can do this using a search query of `metadata\[metalad\_core\]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds\_id:b02e63c2-62c1-11e9-82b0-52540040489c`.  
-The query, `metadata\[metalad\_core\]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds\_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID "b02e63c2-62c1-11e9-82b0-52540040489c" and filters out those that possesses DataLad dataset ID of "b02e63c2-62c1-11e9-82b0-52540040489c".  
+This search locates the ReproNim/containers dataset which provides "a collection of popular computational tools provided within ready to use containerized environments". We can, of course, find all the forks of this dataset by clicking on its DataLad dataset ID, 	"b02e63c2-62c1-11e9-82b0-52540040489c", as demonstrated in the last example. Using logical operators and restricting searchable metadata, we can locate datasets that use the ReproNim/containers dataset as a subdataset. We can do this using a search query of `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`.  
+The query, `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID "b02e63c2-62c1-11e9-82b0-52540040489c" and filters out those that possesses DataLad dataset ID of "b02e63c2-62c1-11e9-82b0-52540040489c".  
 ![][image9]  
-Above is the metalad\_core metadata extracted from the dataset at [https://github.com/spatialtopology/ds005256.git](https://github.com/spatialtopology/ds005256.git).  
+Above is the metalad_core metadata extracted from the dataset at [https://github.com/spatialtopology/ds005256.git](https://github.com/spatialtopology/ds005256.git).  
 ![][image10]
 
 ### Example: Find BIDS datasets not in OpenNeuro {#example:-find-bids-datasets-not-in-openneuro}
 
-Similarly, by leveraging metadata extracted by the "bids\_dataset" metadata extractor, we can find BIDS datasets that are not currently available on [OpenNeuro](https://openneuro.org/) using the query `metadata\[bids\_dataset\]:"" AND NOT url:openneuro`.
+Similarly, by leveraging metadata extracted by the "bids_dataset" metadata extractor, we can find BIDS datasets that are not currently available on [OpenNeuro](https://openneuro.org/) using the query `metadata[bids_dataset]:"" AND NOT url:openneuro`.
 
-`metadata\[bids\_dataset\]:""` finds all the BIDS datasets and `NOT url:openneuro` filters out those that are currently on [OpenNeuro](https://openneuro.org/).  
+`metadata[bids_dataset]:""` finds all the BIDS datasets and `NOT url:openneuro` filters out those that are currently on [OpenNeuro](https://openneuro.org/).  
 ![][image11]
 
 ## RESTful API {#restful-api}
