@@ -57,11 +57,11 @@ In design and implementation, we embrace automation as a guiding principle. Data
 
 DataLad-Registry is a publicly available service accessible at [https://registry.datalad.org/](https://registry.datalad.org/). It maintains up-to-date information on an expanding collection of datasets, currently numbering over thirteen thousand, including those on [datasets.datalad.org](http://datasets.datalad.org) and those on GitHub and GIN[^2] discovered by the [datalad-usage-dashboard](https://github.com/datalad/datalad-usage-dashboard). It makes metadata extracted by the following five extractors available.
 
-1. "metalad\_core"  
-2. "metalad\_studyminimeta"  
-3. "datacite\_gin"  
-4. "bids\_dataset"  
-5. "dandi" 
+1. `"metalad\_core"`  
+2. `"metalad\_studyminimeta"`  
+3. `"datacite\_gin"`  
+4. `"bids\_dataset"`  
+5. `"dandi"` 
 
 The first four extractors are provided through the [datalad-metalad](https://github.com/datalad/datalad-metalad) extension, and the last is a builtin extractor which provides metadata for datasets in the DANDI archive.
 
