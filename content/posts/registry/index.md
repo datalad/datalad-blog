@@ -152,7 +152,91 @@ This search locates the ReproNim/containers dataset which provides "a collection
 {{< collapse summary="Details" >}}
 The query, `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID `b02e63c2-62c1-11e9-82b0-52540040489c` and filters out those that possesses DataLad dataset ID of `b02e63c2-62c1-11e9-82b0-52540040489c`.  
 
-
+```json
+{
+  "dataset_describe": "1070057",
+  "dataset_version": "107005775329e503cf8cad55028a4ae9fc720b2a",
+  "extracted_metadata": {
+    "@context": {
+      "@vocab": "http://schema.org/",
+      "datalad": "http://dx.datalad.org/"
+    },
+    "@graph": [
+      {
+        "@id": "ecee89b3192369e7152288468ac8c54b",
+        "@type": "agent",
+        "email": "remi_gau@hotmail.com",
+        "name": "Remi Gau"
+      },
+      {
+        "@id": "12fa27bc6e8fe98a1d855ad8d0a52076",
+        "@type": "agent",
+        "email": "66853113+pre-commit-ci[bot]@users.noreply.github.com",
+        "name": "pre-commit-ci[bot]"
+      },
+      {
+        "@id": "107005775329e503cf8cad55028a4ae9fc720b2a",
+        "@type": "Dataset",
+        "dateCreated": "2022-03-12T11:14:11+01:00",
+        "dateModified": "2024-10-08T09:43:26+02:00",
+        "distribution": [
+          {
+            "@id": "03b7452b-90e2-454c-8f1a-8c65a15d1d08"
+          },
+          {
+            "@id": "08930dcd-81fd-4923-8060-16eb68ec65dd"
+          },
+          {
+            "@id": "fd5da0d7-d8ce-4de6-9f34-cc23d9815a21"
+          },
+          {
+            "name": "origin",
+            "url": "https://github.com/Remi-Gau/analysis_high-res_pilot001_ses-002_retinotopy.git"
+          }
+        ],
+        "hasContributor": [
+          {
+            "@id": "ecee89b3192369e7152288468ac8c54b"
+          },
+          {
+            "@id": "12fa27bc6e8fe98a1d855ad8d0a52076"
+          }
+        ],
+        "hasPart": [
+          {
+            "@id": "datalad:2d02fd8c7ad744f15a39a0aadbd8a6c60703e20b",
+            "@type": "Dataset",
+            "name": "code/lib/CPP_SPM"
+          },
+          {
+            "@id": "datalad:b38fdf1dd75fc0fa2cf5fd2155ca4c0dd353edc5",
+            "@type": "Dataset",
+            "identifier": "datalad:b02e63c2-62c1-11e9-82b0-52540040489c",
+            "name": "code/pipeline"
+          },
+          {
+            "@id": "datalad:c6be64e3b66c7d1beae81ce800cad3c8db858701",
+            "@type": "Dataset",
+            "identifier": "datalad:9f77e14c-ff39-4a80-9121-916e5892e2b4",
+            "name": "inputs/raw"
+          },
+          {
+            "@id": "datalad:3f1acd1ca13666a49763784f9b7cea2091801f86",
+            "@type": "Dataset",
+            "identifier": "datalad:97986654-4eac-42d9-bac2-aa80c282a397",
+            "name": "outputs/derivatives"
+          }
+        ],
+        "identifier": "32a6f625-e2f0-4df9-a563-858a90ded00f",
+        "version": "0-31-g1070057"
+      }
+    ]
+  },
+  "extraction_parameter": {},
+  "extractor_name": "metalad_core",
+  "extractor_version": "1"
+}
+```
 {{< figure
 src="metalad_core_metadata.png"
 caption="The `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git."
