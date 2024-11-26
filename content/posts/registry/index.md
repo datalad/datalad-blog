@@ -85,7 +85,9 @@ alt="An embedded page showing the detailed stats of the entire registry"
 
 In particular, you will see information such as how many unique DataLad datasets the registry is currently tracking, and the total number and size of the annexed files in these datasets.
 
+{{< collapse summary="Details" >}}
 Every DataLad dataset has a UUID attached to it, and every clone shares the same UUID regardless where it is located. Even though a platform such as GitHub allows the tracking of “explicit clones” of a repository, the identity of the original dataset could be lost. DataLad-Registry uses this ID to allow you to find clones of a dataset and datasets using the dataset as a subdataset across all platforms (see demos in the following section).
+{{< /collapse >}}
 
 ## Search functionality {#search-functionality}
 
@@ -146,6 +148,8 @@ alt="A page showing the result of the single-word search of `container`"
 ### 
 
 This search locates the ReproNim/containers dataset which provides "a collection of popular computational tools provided within ready to use containerized environments". We can, of course, find all the forks of this dataset by clicking on its DataLad dataset ID, `b02e63c2-62c1-11e9-82b0-52540040489c`, as demonstrated in the last example. Using logical operators and restricting searchable metadata, we can locate datasets that use the ReproNim/containers dataset as a subdataset. We can do this using a search query of `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`.  
+
+{{< collapse summary="Details" >}}
 The query, `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID `b02e63c2-62c1-11e9-82b0-52540040489c` and filters out those that possesses DataLad dataset ID of `b02e63c2-62c1-11e9-82b0-52540040489c`.  
 
 
@@ -154,7 +158,7 @@ src="metalad_core_metadata.png"
 caption="The `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git."
 alt="A page showing the `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git"
     >}}
-
+{{< /collapse >}}
 
 {{< figure
 src="repronim-as-subdataset.png"
@@ -166,8 +170,9 @@ alt="A page showing the result of a search with the query `metadata[metalad_core
 
 Similarly, by leveraging metadata extracted by the `bids_dataset` metadata extractor, we can find BIDS datasets that are not currently available on [OpenNeuro](https://openneuro.org/) using the query `metadata[bids_dataset]:"" AND NOT url:openneuro`.
 
+{{< collapse summary="Details" >}}
 `metadata[bids_dataset]:""` finds all the BIDS datasets and `NOT url:openneuro` filters out those that are currently on [OpenNeuro](https://openneuro.org/).  
-
+{{< /collapse >}}
 
 {{< figure
 src="bids-not-on-openneuro.png"
