@@ -237,11 +237,6 @@ The query, `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT 
   "extractor_version": "1"
 }
 ```
-{{< figure
-src="metalad_core_metadata.png"
-caption="The `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git."
-alt="A page showing the `metalad_core` metadata extracted from the dataset at https://github.com/spatialtopology/ds005256.git"
-    >}}
 {{< /collapse >}}
 
 {{< figure
