@@ -152,6 +152,7 @@ This search locates the ReproNim/containers dataset which provides "a collection
 {{< collapse summary="Details" >}}
 The query, `metadata[metalad_core]:b02e63c2-62c1-11e9-82b0-52540040489c AND NOT ds_id:b02e63c2-62c1-11e9-82b0-52540040489c`, searches for datasets with metadata extracted by the [metalad\_core](https://docs.datalad.org/projects/metalad/en/latest/user_guide/metalad-first-steps.html?highlight=metalad_core#extract-dataset-level-metadata) extractor that contains the DataLad dataset ID `b02e63c2-62c1-11e9-82b0-52540040489c` and filters out those that possesses DataLad dataset ID of `b02e63c2-62c1-11e9-82b0-52540040489c`.  
 
+The following is the metadata extracted by the `metalad_core` extractor from one of the datasets that use the ReproNim/containers dataset as a subdataset.
 ```json
 {
   "dataset_describe": "1070057",
