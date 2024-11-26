@@ -10,7 +10,7 @@ tags:
   - DataLad-Registry
 cover:
   # webp (or png, jpg) should be 1200x630 px for social media cards
-  image: cover.webp
+  image: cover.png
   alt: A screenshot of DataLad-Registry web UI
   # must be 'true' if image is in page bundle, i.e. next to the
   # markdown file with the article
