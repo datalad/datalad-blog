@@ -55,15 +55,13 @@ In design and implementation, we embrace automation as a guiding principle. Data
 
 # Current State {#current-state}
 
-DataLad-Registry is a publicly available service accessible at [https://registry.datalad.org/](https://registry.datalad.org/). It maintains up-to-date information on an expanding collection of datasets, currently numbering over thirteen thousand, including those on [datasets.datalad.org](http://datasets.datalad.org) and those on GitHub and GIN[^2] discovered by the [datalad-usage-dashboard](https://github.com/datalad/datalad-usage-dashboard). It makes metadata extracted by the following five extractors available.
+DataLad-Registry is a publicly available service accessible at [https://registry.datalad.org/](https://registry.datalad.org/). It maintains up-to-date information on an expanding collection of datasets, currently numbering over thirteen thousand, including those on [datasets.datalad.org](http://datasets.datalad.org) and those on GitHub and GIN[^2] discovered by the [datalad-usage-dashboard](https://github.com/datalad/datalad-usage-dashboard). To facilitate the discovery and utilization of datasets, DataLad-Registry leverages the [datalad-metalad](https://github.com/datalad/datalad-metalad) extension, which equips DataLad with metadata handling capabilities. This extension enables the extraction, aggregation, filtering, and reporting of metadata from datasets, thereby enhancing their accessibility and interoperability. DataLad-Registry currently employs four metadata extractors (the first four below) from the datalad-metalad extension and one built-in metadata extractor to gather metadata from datasets:
 
-1. `"metalad_core"`  
-2. `"metalad_studyminimeta"`  
-3. `"datacite_gin"`  
-4. `"bids_dataset"`  
-5. `"dandi"` 
-
-The first four extractors are provided through the [datalad-metalad](https://github.com/datalad/datalad-metalad) extension, and the last is a builtin extractor which provides metadata for datasets in the DANDI archive.
+1. `"metalad_core"`: Extracts fundamental metadata, including dataset identifiers and versioning information.  
+2. `"metalad_studyminimeta"`: Gathers metadata from studyminimeta YAML files, producing JSON-LD compatible descriptions of the dataset's content.  
+3. `"datacite_gin"`: Retrieves metadata adhering to the DataCite schema, particularly from datasets hosted on the G-Node Infrastructure (GIN).  
+4. `"bids_dataset"`: Extracts metadata from datasets structured according to the Brain Imaging Data Structure (BIDS) standard.  
+5. `"dandi"`: Provides metadata for datasets within the DANDI archive, archive for neurophysiology data.
 
 ## Overview of Registered Datasets
 
