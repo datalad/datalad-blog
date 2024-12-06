@@ -1,6 +1,6 @@
 ---
 title: 'DataLad-Registry: Bringing Benefits of Centrality to DataLad'
-date: 2024-10-13T18:17:28-07:00
+date: 2024-12-06T13:17:17-07:00
 author:
   - Isaac To
   - Austin Macdonald
