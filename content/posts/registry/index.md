@@ -322,7 +322,7 @@ alt="A figure depicting that the public instance of DataLad-Registry is availabl
 
 # Join/Contribute {#join-or-contribute}
 
-Do you have a collection of datasets that you need to run periodic tasks on? Or do you have interesting metadata to extract? Please file an issue at [https://github.com/datalad/datalad-registry/issues](https://github.com/datalad/datalad-registry/issues), and we can help you make those datasets and their metadata available through DataLad-Registry.
+Do you have a collection of datasets that you need to run periodic tasks on and/or make them available on the public instance of DataLad-Registry? Or do you have interesting metadata to extract? Please file an issue at [https://github.com/datalad/datalad-registry/issues](https://github.com/datalad/datalad-registry/issues), and we can help you make those datasets and their metadata available through DataLad-Registry.
 
 # References
 
