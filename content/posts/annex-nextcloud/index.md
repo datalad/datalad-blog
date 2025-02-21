@@ -2,7 +2,7 @@
 title: 'Putting new git-annex features to use with Nextcloud'
 date: 2025-02-20T20:30:00+01:00
 author: Michał Szczepanik
-draft: true
+draft: false
 ---
 
 Git-annex continues to evolve. In this post, I want to look at two changes, one big and one small, introduced over the last seven months. Together, they make publishing files through Nextcloud much nicer.
@@ -17,7 +17,9 @@ In git-annex's changelog, we find the following:
 
 The former is the big one, and it is introduced in a git-annex tips page: [storing a git repository on any special remote](https://git-annex.branchable.com/tips/storing_a_git_repository_on_any_special_remote/). In short, the change introduced a Git remote helper---when Git is asked to clone from a specifically crafted URL, it turns to git-annex for help---and git-annex can fetch the repository deposit from places not typically accessible to Git. This means that Git-aware hosting is no longer necessary to clone, push, and pull.
 
-The latter sounds small in comparison, but it opened a way for a read-only password-protected shared Nextcloud folder to become a one-stop-shop for accessing repository with data thanks to git-remote-annex. This is the scenario I will describe here.
+The latter sounds small in comparison, but it opened a way for git-remote-annex to be placed in a read-only password-protected shared Nextcloud folder, making it a one-stop-shop for accessing a repository with data.
+
+This is the scenario I will describe here: a setup that allows one to clone and retrieve a published dataset directly from Nextcloud (via WebDAV), with minimal effort from the consumer. The setup requires very little work from the dataset author, but I will nevertheless approach it in stages: first showing how to set up read-only access, and then showing how to add the Git repository deposit on top.
 
 ## Nextcloud and WebDAV
 
@@ -72,7 +74,7 @@ We push (or copy) the contents to the remote:
 git annex push nextcloud
 ```
 
-The remote, as it is, has one problem in terms of sharing: its URL is user-specific. However, git-annex has an answer for that: the `--sameas` parameter declares that remotes use the same underlying storage. Because initremote performs a write test, and we intend for the share link to be read-only, we do it with the same URL first...
+So far, nothing special. However, the remote, as it is, has one problem in terms of sharing: its URL is user-specific. However, git-annex has an answer for that: the `--sameas` parameter declares that remotes use the same underlying storage. Because initremote performs a write test, and we intend for the share link to be read-only, we do it with the same URL first...
 
 ```
 WEBDAV_USERNAME=jdoe WEBDAV_PASSWORD=$MYTOKEN \
