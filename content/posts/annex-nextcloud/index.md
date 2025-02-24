@@ -50,7 +50,7 @@ In this example, we want to use a WebDAV special remote to store data on a Nextc
 
 First, we create a mock repository and add a file:
 
-```
+```sh
 cd /tmp/ds
 git init
 git annex init
@@ -61,7 +61,7 @@ git commit -m "Added random data"
 
 Then we add a WebDAV special remote. The user-specific WebDAV URL can be found in Nextcloud's web UI, and we add path components as needed.
 
-```
+```sh
 WEBDAV_USERNAME=jdoe WEBDAV_PASSWORD=$MYTOKEN \ 
   git annex initremote nextcloud \
   type=webdav encryption=none \ 
@@ -70,13 +70,13 @@ WEBDAV_USERNAME=jdoe WEBDAV_PASSWORD=$MYTOKEN \
 
 We push (or copy) the contents to the remote:
 
-```
+```sh
 git annex push nextcloud
 ```
 
 So far, nothing special. However, the remote, as it is, has one problem in terms of sharing: its URL is user-specific. However, git-annex has an answer for that: the `--sameas` parameter declares that remotes use the same underlying storage. Because initremote performs a write test, and we intend for the share link to be read-only, we do it with the same URL first...
 
-```
+```sh
 WEBDAV_USERNAME=jdoe WEBDAV_PASSWORD=$MYTOKEN \
   git annex initremote nextcloud-public --sameas nextcloud \
   type=webdav encryption=none \
@@ -86,14 +86,14 @@ WEBDAV_USERNAME=jdoe WEBDAV_PASSWORD=$MYTOKEN \
 ... only to generate the share link and reconfigure the remote afterwards. Here, the changed enableremote behavior becomes crucial.
 
 
-```
+```sh
 git annex enableremote nextcloud-public \
   url=https://nextcloud.example.com/public.php/webdav
 ```
 
 In practice, at this point we would publish the Git repository somewhere else. To simulate the consumer's perspective, we clone the repository locally:
 
-```
+```sh
 cd /tmp
 git clone ds ds-clone
 cd ds-clone
@@ -101,14 +101,14 @@ cd ds-clone
 
 The special remote can be enabled with the share token and password as the WebDAV credentials -- it is for this moment that we needed the ability to enable without write permissions:
 
-```
+```sh
 WEBDAV_USERNAME=$SHARETOKEN WEBDAV_PASSWORD=$SHAREPASSWORD \ 
-    git annex enableremote nextcloud-public
+  git annex enableremote nextcloud-public
 ```
 
 And the file can be obtained:
 
-```
+```sh
 git annex get foo.dat --from nextcloud-public
 ```
 
@@ -121,21 +121,21 @@ Squeezing everything into Nextcloud has downsides compared to using a Git-aware 
 
 First, back to the owner's perspective.
 
-```
+```sh
 cd /tmp/ds
 ```
 
 Enabling the git-remote-annex is easy.
 
-```
+```sh
 git annex enableremote nextcloud --with-url
 git annex push nextcloud
 ```
 
 On push, git-annex will report the full remote URL, one that we (as owners) could use to clone:
 
-```
-push nextcloud
+```console
+> push nextcloud
 Full remote url: annex::2cd3b81c-a794-4e8e-9e00-527b46efe2d9?encryption=none&type=webdav&url=https%3A%2F%2Fnextcloud.example.com%2Fremote.php%2Fdav%2Ffiles%2Fjdoe%2Fsome%2Ffolder
 To annex::
  * [new branch]      main -> synced/main
@@ -154,13 +154,13 @@ The URL can be crafted by putting together:
 - special remote parameters (`?encryption=none&type=webdav`),
 - Nextcloud instance-specific public WebDAV URL (`&url=https://nextcloud.example.com/public.php/webdav`).
 
-```
+```sh
 PUBLIC_URL="annex::2cd3b81c-a794-4e8e-9e00-527b46efe2d9?encryption=none&type=webdav&url=https://nextcloud.example.com/public.php/webdav"
 ```
 
 This URL can be cloned from. As previously, share token and password are used as WebDAV credentials.
 
-```
+```sh
 cd /tmp
 WEBDAV_USERNAME=$SHARETOKEN WEBDAV_PASSWORD=$SHAREPASSWORD \ 
   git clone $PUBLIC_URL ds-clone-2
@@ -168,7 +168,7 @@ WEBDAV_USERNAME=$SHARETOKEN WEBDAV_PASSWORD=$SHAREPASSWORD \
 
 Because webdav and webdav-public remain technically two separate remotes, getting from the origin at this point would try to use the owner's URL for getting data (even though we cloned through the public URL). The recipient still needs to enable the -public remote after cloning.
 
-```
+```sh
 cd ds-clone-2
 WEBDAV_USERNAME=$SHARETOKEN WEBDAV_PASSWORD=$SHAREPASSWORD \ 
   git annex enableremote nextcloud-public
@@ -176,7 +176,7 @@ WEBDAV_USERNAME=$SHARETOKEN WEBDAV_PASSWORD=$SHAREPASSWORD \
 
 And the file can be obtained as previously.
 
-```
+```sh
 git annex get foo.dat --from nextcloud-public
 ```
 
