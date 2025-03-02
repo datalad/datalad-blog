@@ -24,7 +24,7 @@ For the past 18 years I have been a GitHub user.
 It has been an extremely convenient platform for collaborating with many people from all over the world.
 What makes GitHub, and other platforms like it, particularly attractive is that they are typically way more accessible than any institutionally provided infrastructure ([even if not without issues of its own](https://en.wikipedia.org/wiki/Censorship_of_GitHub)).
 GitHub also provided an extremely reliable and stable infrastructure that encouraged and rewarded building on it.
-Again, from my personal experience, much more reliable and stable that lots of institutional infrastructures.
+Again, from my personal experience, much more reliable and stable than lots of institutional infrastructures.
 
 But the times of appreciation were over when things started to be about who can grab more data from any sources to train yet another "AI", violating licenses, ignoring basic ethical behavior -- and GitHub was at the forefront of it.
 And I felt trapped, because I couldn't really see an affordable way out, other than switching one poison for another.
@@ -167,11 +167,11 @@ adduser thedude sudo
 
 ## Root-less Forgejo-Aneksajo service
 
-As for every other coming service, we deploy the Forgejo via a container that is managed by [Podman](https://podman.io) in user space. The pattern for that is always the same:
+As for every other coming service, we deploy Forgejo via a container that is managed by [Podman](https://podman.io) in user space. The pattern for that is always the same:
 
 - create a user, disabling password (and often login)
 - enable execution of processes for that user when not logged in
-- set up systemd and service units
+- set up [systemd](https://systemd.io) and service units
 - perform other service-specific configuration
 
 The target is always to contain all configuration and runtime data in the user's HOME directory.
@@ -229,7 +229,7 @@ and `custom` to be a git-annex repository that can be shared to aid management o
 The later is a git-annex repository, because custom assets can be quite large and volatile for some use cases.
 Both are hosted on the Forgejo site in a dedicated organization.
 
-Now we can drop in a systemd service unit for Forgejo.
+Now we can drop in a `systemd` service unit for Forgejo.
 Only three things are worth pointing out:
 
 - `hub.datalad.org/forgejo/forgejo-aneksajo:10-rootless-amd64` selects the container image to execute.
@@ -288,7 +288,7 @@ systemctl --user start forgejo
 ```
 
 On the first launch this will take a moment, because it will pull the necessary container image first.
-Once launched successully, we can `enable` this service unit, so it will be restarted when the host machine reboots.
+Once launched successfully, we can enable this service unit, so it will be restarted when the host machine reboots.
 
 ```bash
 systemctl --user enable forgejo
@@ -311,15 +311,20 @@ EOT
 
 Now we can reload `caddy`, and it will obtain SSL certificates automatically to enable HTTPS communication. Before reloading caddy, the DNS `CNAME` or `A RECORD` must be set up already.
 
+```bash
+# as root
+systemctl reload caddy
+```
+
 Now visit the Forgejo installer at port `3000` or the configured (sub)domain.
-It makes sense to configure SMTP server for email notification, set up an admin user, and disable LFS.
+It makes sense to configure an SMTP server for email notification, set up an admin user, and disable LFS.
 I have never tried any other database backend then `sqlite` and never had a need to.
 Even with dozens of users and thousands of repositories `sqlite` appears to be just fine.
 A switch to a proper database server should not be made without proper consideration of the implications on backup strategies to hold filesystem and database content in sync during backup and rollback.
-Other than that, the particular choices of configuration made in the installer are not really critical and can be rectified and amended in the next step.
+Other than that, the particular configuration choices made in the installer are not really critical and can be rectified and amended in the next step.
 
 Once the installed has finished, it will have written an `app.ini` file in the `conf` directory.
-If desired, this can now be committed to the initialized Git repository (and push to the newly deployed Forgejo site).
+If desired, this can now be committed to the initialized Git repository (and pushed to the newly deployed Forgejo site).
 Now is also the time to further customize the configuration.
 The following `diff` comparison to a default configuration might provide some inspiration:
 
@@ -392,7 +397,7 @@ Without this flag, the git-annex features are not available, and the site will a
 Disabling SSH is a choice, but a non-SSH setup is arguably simpler.
 
 Further site customization can be done by adding content to the `custom` directory.
-However, be mindful of the recommendations in the Forgejo admin documentation [on interface customization](https://forgejo.org/docs/latest/admin/customization/). For some inspiration, you are welcome to explore the [customizations of `hub.psychoinformatics.de`](https://hub.psychoinformatics.de/hub/custom).
+However, be mindful of the recommendations in the Forgejo admin documentation [on interface customization](https://forgejo.org/docs/latest/admin/customization/). For some inspiration, you are welcome to explore the [customizations of `hub.psychoinformatics.de`](https://hub.psychoinformatics.de/infra/hub-customizations).
 
 
 ## Conclusions
