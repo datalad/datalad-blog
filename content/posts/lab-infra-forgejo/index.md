@@ -1,6 +1,6 @@
 ---
 title: "Collaborative infrastructure for a lab: Forgejo"
-date: 2025-03-02T06:00:00+02:00
+date: 2025-03-04T19:42:00+02:00
 author:
 - Michael Hanke
 tags:
