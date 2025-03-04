@@ -226,7 +226,7 @@ mkdir forgejo git custom conf
 These four directories could be kept plain, and subject to generic backup strategies.
 However, I do like `conf` to be a Git repository that tracks configuration changes,
 and `custom` to be a git-annex repository that can be shared to aid management of similar deployments.
-The later is a git-annex repository, because custom assets can be quite large and volatile for some use cases.
+The latter is a git-annex repository, because custom assets can be quite large and volatile for some use cases.
 Both are hosted on the Forgejo site in a dedicated organization.
 
 Now we can drop in a `systemd` service unit for Forgejo.
@@ -298,7 +298,7 @@ systemctl --user enable forgejo
 
 At this point we can access Forgejo on port `3000` on the host machine.
 If the site should be accessible on a custom (sub)domain, it is best to configure the reverse-proxy now, to aid Forgejo's configuration self-detection.
-With `caddy`, this is as simple as dropping a short snipped into its configuration file (here shown for out `hub.psychoinformatics.de` site, please adjust accordingly):
+With `caddy`, this is as simple as dropping a short snippet into its configuration file (here shown for out `hub.psychoinformatics.de` site, please adjust accordingly):
 
 ```console
 # as root
@@ -323,7 +323,7 @@ Even with dozens of users and thousands of repositories `sqlite` appears to be j
 A switch to a proper database server should not be made without proper consideration of the implications on backup strategies to hold filesystem and database content in sync during backup and rollback.
 Other than that, the particular configuration choices made in the installer are not really critical and can be rectified and amended in the next step.
 
-Once the installed has finished, it will have written an `app.ini` file in the `conf` directory.
+Once the installation has finished, it will have written an `app.ini` file in the `conf` directory.
 If desired, this can now be committed to the initialized Git repository (and pushed to the newly deployed Forgejo site).
 Now is also the time to further customize the configuration.
 The following `diff` comparison to a default configuration might provide some inspiration:
