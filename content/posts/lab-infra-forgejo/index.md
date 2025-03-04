@@ -318,7 +318,7 @@ systemctl reload caddy
 
 Now visit the Forgejo installer at port `3000` or the configured (sub)domain.
 It makes sense to configure an SMTP server for email notification, set up an admin user, and disable LFS.
-I have never tried any other database backend then `sqlite` and never had a need to.
+I have never tried any other database backend than `sqlite` and never had a need to.
 Even with dozens of users and thousands of repositories `sqlite` appears to be just fine.
 A switch to a proper database server should not be made without proper consideration of the implications on backup strategies to hold filesystem and database content in sync during backup and rollback.
 Other than that, the particular configuration choices made in the installer are not really critical and can be rectified and amended in the next step.
