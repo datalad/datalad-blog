@@ -2,6 +2,8 @@
 title: 'Putting new git-annex features to use with Nextcloud'
 date: 2025-02-20T20:30:00+01:00
 author: Michał Szczepanik
+social:
+  fediverse_creator: "@doktorpanik@masto.ai"
 draft: false
 ---
 
