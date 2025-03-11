@@ -4,7 +4,14 @@ date: 2025-03-11T15:00:00+01:00
 author: Michał Szczepanik
 social:
   fediverse_creator: "@doktorpanik@masto.ai"
-draft: false
+tags:
+- git-annex
+- workflow
+- nextcloud
+cover:
+  image: cover.webp
+  alt: "Screenshot of Nextcloud web interface showing some folders, two of them shared, and a sharing pane where cloneable-dataset has a share link set to view only. Nextcloud, WebDAV, and git-annex logos are overlaid on top of the screenshot."
+  relative: true
 ---
 
 Git-annex continues to evolve. In this post, I want to look at two changes, one big and one small, introduced within the last year. Together, they make publishing files through Nextcloud much nicer.
