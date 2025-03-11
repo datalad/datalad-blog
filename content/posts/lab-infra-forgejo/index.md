@@ -309,7 +309,7 @@ hub.psychoinformatics.de {
 EOT
 ```
 
-Now we can reload `caddy`, and it will obtain SSL certificates automatically to enable HTTPS communication. Before reloading caddy, the DNS `CNAME` or `A RECORD` must be set up already.
+Now we can reload `caddy`, and it will obtain SSL certificates automatically to enable HTTPS communication. Before reloading caddy, the DNS `CNAME` or `A` record must be set up already.
 
 ```bash
 # as root
@@ -404,7 +404,7 @@ However, be mindful of the recommendations in the Forgejo admin documentation [o
 
 In this first post of this series, we have established the basic environment for putting together a collaborative infrastructure for a (research) group.
 
-We now have a server deployment with a fairly bare bone configuration, where only admins need shell access.
+We now have a server deployment with a fairly barebone configuration, where only admins need shell access.
 We also have a Forgejo-Aneksajo deployment that already provides key features of this infrastructure:
 
 - Git/data hosting
