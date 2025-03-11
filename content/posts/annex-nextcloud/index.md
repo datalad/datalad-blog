@@ -1,13 +1,21 @@
 ---
 title: 'Putting new git-annex features to use with Nextcloud'
-date: 2025-02-20T20:30:00+01:00
+date: 2025-03-11T15:00:00+01:00
 author: Michał Szczepanik
 social:
   fediverse_creator: "@doktorpanik@masto.ai"
 draft: false
 ---
 
-Git-annex continues to evolve. In this post, I want to look at two changes, one big and one small, introduced over the last seven months. Together, they make publishing files through Nextcloud much nicer.
+Git-annex continues to evolve. In this post, I want to look at two changes, one big and one small, introduced within the last year. Together, they make publishing files through Nextcloud much nicer.
+
+Specifically, it is now possible for a read-only shared Nextcloud folder to be a one-stop shop for cloning the dataset and getting file contents.
+This can be a useful setup for sharing (research) data:
+having the shared folder be a single point of access is convenient, and restricting write access is necessary to prevent unauthorized changes.
+
+Why the focus on Nextcloud? I am under the impression that it is currently enjoying a lot of popularity as a self-hosted cloud solution. In a workshop for research data managers last year, I sensed a lot of positive sentiment towards Nextcloud among my colleagues. The [FOSDEM 2025 talk "What's new in Nextcloud?"](https://fosdem.org/2025/schedule/event/fosdem-2025-4515-what-s-new-in-nextcloud-/) (which I had the pleasure to attend, and can attest that the room was packed) gives an idea what Nextcloud can do beyond just storage. Relevant for my work, the German state of North Rhine-Westphalia operates a cloud storage service for research, studying and teaching called [Sciebo](https://hochschulcloud.nrw/en/), which is about to migrate from Owncloud to Nextcloud. And personally, I use a managed solution from one of the commercial providers.
+
+## Two new features in git-annex
 
 In git-annex's changelog, we find the following:
 
@@ -17,17 +25,21 @@ In git-annex's changelog, we find the following:
 > - 10.20250115: Allow enableremote of an existing webdav special remote
 >   that has read-only access
 
-The former is the big one, and it is introduced in a git-annex tips page: [storing a git repository on any special remote](https://git-annex.branchable.com/tips/storing_a_git_repository_on_any_special_remote/). In short, the change introduced a Git remote helper---when Git is asked to clone from a specifically crafted URL, it turns to git-annex for help---and git-annex can fetch the repository deposit from places not typically accessible to Git. This means that Git-aware hosting is no longer necessary to clone, push, and pull.
+In a "traditional" approach to data publication with git-annex, a Git remote stores the Git repository, and a git-annex special remote stores large file contents.
+The former is used for cloning the dataset, and the latter for getting the files.
+The approach has its advantages, but in many scenarios (especially those using some sort of cloud storage) it means relying on two services, one of them Git-aware, to access the data.
+The first change breaks with the paradigm: Git-annex now has a way to store a Git repository on a special remote.
+In short, this is done by introducing a Git remote helper---when Git is asked to clone from a specifically crafted URL, it turns to git-annex for help---and git-annex can fetch the repository deposit from places not typically accessible to Git. This means that Git-aware hosting is no longer necessary to clone, push, and pull.
+The git-annex website has a nice introduction to this new feature: [storing a git repository on any special remote](https://git-annex.branchable.com/tips/storing_a_git_repository_on_any_special_remote/).
 
-The latter sounds small in comparison, but it opened a way for git-remote-annex to be placed in a read-only password-protected shared Nextcloud folder, making it a one-stop-shop for accessing a repository with data.
+The second change sounds small in comparison, but it opened a way for a Nextcloud folder (accessed through WebDAV) with git-remote-annex to be shared password-protected and read-only.
 
-This is the scenario I will describe here: a setup that allows one to clone and retrieve a published dataset directly from Nextcloud (via WebDAV), with minimal effort from the consumer. The setup requires very little work from the dataset author, but I will nevertheless approach it in stages: first showing how to set up read-only access, and then showing how to add the Git repository deposit on top.
+This is the scenario I will describe here: a setup that allows a consumer to clone and retrieve a published dataset directly from Nextcloud, with minimal effort. The setup requires very little work from the dataset author, but I will nevertheless approach it in stages: first showing how to set up read-only access, and then showing how to add the Git repository deposit on top.
 
-## Nextcloud and WebDAV
+## Understanding Nextcloud's share and WebDAV URLs
 
-Why the focus on Nextcloud? I am under the impression that it is currently enjoying a lot of popularity as a self-hosted cloud solution. In a workshop for research data managers last year, I sensed a lot of positive sentiment towards Nextcloud among my colleagues. The [FOSDEM 2025 talk "What's new in Nextcloud?"](https://fosdem.org/2025/schedule/event/fosdem-2025-4515-what-s-new-in-nextcloud-/) (which I had the pleasure to attend, and can attest that the room was packed) gives an idea what Nextcloud can do beyond just storage. Relevant for my work, the German state of North Rhine-Westphalia operates a cloud storage service for research, studying and teaching called [Sciebo](https://hochschulcloud.nrw/en/), which is about to migrate from Owncloud to Nextcloud. And personally, I use a managed solution from one of the commercial providers.
-
-What is important in this context is that Nextcloud provides WebDAV as a way to access files. This means that it can be used with the git-annex [WebDAV special remote](https://git-annex.branchable.com/special_remotes/webdav/).
+Nextcloud provides WebDAV as a way to access files.
+This means that it can be used with the git-annex [WebDAV special remote](https://git-annex.branchable.com/special_remotes/webdav/).
 
 Folders shared from Nextcloud's web interface can also be accessed via WebDAV. There are some rules which govern the access paths in different scenarios (named users or public links; for details, see [Nextcloud's WebDAV documentation](https://docs.nextcloud.com/server/20/user_manual/en/files/access_webdav.html) and a summary in the Psychoinformatics Knowledge Base item on [Nextcloud URL patterns](https://knowledge-base.psychoinformatics.de/kbi/0028/index.html#nextcloud-url-patterns)). Here, we will focus on a share via a public link which is read-only and password-protected, using an example instance address:
 
@@ -36,7 +48,6 @@ Folders shared from Nextcloud's web interface can also be accessed via WebDAV. T
   - The last link component (`3DQbgnWnTmMGi4z`), also called the share token, becomes the recipient's WebDAV username;
   - The password set for the share link becomes the WebDAV share password;
 - The public WebDAV path is: `https://nextcloud.example.com/public.php/webdav` (no folder components).
-
 
 This can be used with git-annex!
 
@@ -168,7 +179,7 @@ WEBDAV_USERNAME=$SHARETOKEN WEBDAV_PASSWORD=$SHAREPASSWORD \
   git clone $PUBLIC_URL ds-clone-2
 ```
 
-Because webdav and webdav-public remain technically two separate remotes, getting from the origin at this point would try to use the owner's URL for getting data (even though we cloned through the public URL). The recipient still needs to enable the -public remote after cloning.
+Because nextcloud and nextcloud-public remain technically two separate remotes, getting from the origin at this point would try to use the owner's URL for getting data (even though we cloned through the public URL). The recipient still needs to enable the -public remote after cloning.
 
 ```sh
 cd ds-clone-2
@@ -184,7 +195,7 @@ git annex get foo.dat --from nextcloud-public
 
 ## Summary
 
-Since version 10.20240531, a new use-case is possible with git-annex and Nextcloud.
+Since version 10.20250115, a new use-case is possible with git-annex and Nextcloud.
 In this use case, annexed data are published together with the Git repository to a folder on a Nextcloud instance, which gets shared with git-annex-using recipients without giving them write access (the share can optionally be password protected).
 The folder owner only needs to take care of two additional git-annex configurations: setting up an additional special remote pointing to a public WebDAV URL of their instance, and enabling git-remote-annex.
 The data recipients can clone the data from a somewhat lengthy but easily generated URL, and enable the special remote using share-specific credentials obtained from the owner.
