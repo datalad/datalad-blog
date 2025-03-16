@@ -3,6 +3,8 @@ title: "Deploying and managing Forgejo-aneksajo with podman and systemd"
 date: 2024-07-31T12:09:00+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - Forgejo
 - self-hosted

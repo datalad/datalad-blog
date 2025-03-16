@@ -3,6 +3,8 @@ title: 'Self-hosted music streaming from a git-annex repository'
 date: 2024-07-18T15:27:47+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - DataLad
 - git-annex

@@ -3,6 +3,8 @@ title: "Operate a runner for Forgejo actions with podman and systemd"
 date: 2024-08-06T21:09:00+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - Forgejo
 - self-hosted

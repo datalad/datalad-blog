@@ -4,6 +4,8 @@ title: 'A blog on data management and DataLad'
 date: 2024-07-11T20:28:47+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - DataLad
 cover:

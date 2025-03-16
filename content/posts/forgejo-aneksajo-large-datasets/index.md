@@ -3,6 +3,8 @@ title: 'Hosting really large datasets with Forgejo-aneksajo'
 date: 2024-08-27T17:55:00+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - DataLad
 - Forgejo

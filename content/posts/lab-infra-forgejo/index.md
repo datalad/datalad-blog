@@ -3,6 +3,8 @@ title: "Collaborative infrastructure for a lab: Forgejo"
 date: 2025-03-04T19:42:00+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - Forgejo
 - self-hosted

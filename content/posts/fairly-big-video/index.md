@@ -2,6 +2,8 @@
 title: "Fairly big video workflow"
 author:
 - Michał Szczepanik
+social:
+  fediverse_creator: "@doktorpanik@masto.ai"
 date: "2024-08-16T18:30:00+02:00"
 showtoc: true
 tags:

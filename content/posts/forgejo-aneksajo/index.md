@@ -3,6 +3,8 @@ title: "Self-hosted and git-annex enabled data store with Forgejo"
 date: 2024-07-21T15:34:27+02:00
 author:
 - Michael Hanke
+social:
+  fediverse_creator: "@mih@mas.to"
 tags:
 - Forgejo
 - git-annex
