@@ -20,6 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Annotate locations with typos
-        uses: "https://github.com/codespell-project/codespell-problem-matcher@v1"
+        uses: "https://github.com/codespell-project/codespell-problem-matcher@v1.2.0"
       - name: Codespell
-        uses: "https://github.com/codespell-project/actions-codespell@v2"
+        uses: "https://github.com/codespell-project/actions-codespell@v2.1"
