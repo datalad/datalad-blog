@@ -56,7 +56,7 @@ The active work in my project happens in the 'derived/L5b' subdataset that consu
 ### Neither ready to go big nor go home
 Usually, I craft one [`datalad run`](https://docs.datalad.org/en/latest/generated/man/datalad-run.html) command, test it, and then write a bash script to run it for multiple subjects and experiments. Here is when it becomes painful: once it's running you can't carry on working, because any modification will interrupt the next `datalad run` command. Ideally, I can run things in an isolated environment that is clean and stays untouched until the job finishes. Git worktrees come in handy, because they essentially access the same annexed content (so no time wasted in getting content for another clone), but live in a different directory on the disk. Worktrees share the annex and repo history, but not the state the repo is in. This allows me to checkout different branches simultaneously since they live on different worktrees.
 
-Since there is no automatic way to create a nested worktree (described in [this issue](https://github.com/datalad/datalad/issues/7764)), I manually create a worktree for each subdataset inside 'derived/L5b':
+Since at the moment there is no DataLad helper command to create a collection of nested worktrees (described in [this issue](https://github.com/datalad/datalad/issues/7764)) for each subdataset, I directly use `git worktree add` command to create a worktree for each subdataset inside 'derived/L5b':
 
 ```bash
 # add a worktree on a new branch with the name 'runs' for the superds
