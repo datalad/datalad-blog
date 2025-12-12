@@ -81,7 +81,7 @@ Preparing worktree (checking out 'runs')
 HEAD is now at ef5dafb generate_plots: plot rois, traces, and F displots
 ```
 
-The branch for 'code' has already been created, when I got ready with the code:
+The branch 'runs' in `code/` has already been created, when I got ready with the code:
 ```bash
 # the new datalad run command is ready
 M/d/L/code> git switch -c runs
