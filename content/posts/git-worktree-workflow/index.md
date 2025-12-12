@@ -358,7 +358,7 @@ action summary:
 What happened? - Apparently, I've lost the '.venv' directory during the hard reset which causes "ModuleNotFoundError: No module named 'process2p'". määäh! This actually speaks for the use of a container. The problem with the container is that I have to rebuild it everytime I update my code ... annoying! I guess that's the trade-off between efficiency and reproducibility. To illustrate this 'highly complex' dilemma with Deepseek's smart-ass comment in a graph:
 ```
         Fast Iteration ←──────────→ Reproducibility
-              ↑                          ↑7zzz
+              ↑                          ↑
           Convenience           Containerized Certainty
 ```
 The attentive reader might now also want to blame my decision to rewrite the history instead of creating a new commit which would have avoided the `git reset` operation and the loss of the uv environment. I guess also here there is a trade-off between maintaining a clean history and keeping development momentum:
