@@ -101,7 +101,7 @@ For all perspective jj users, having the 'empty' change on top of the target com
 
 So the plan is to park the worktree 'runs' at this clean state on top of the commit 'ef5dafb4', run the script 'generate_plots.py' on multiple subjects and experiments, while continuing developing on dirty branches. Let's see if that works out!
 
-In the newly created worktree 'runs', I verify that it is in the right state that records the successful datalad run command:
+In the newly created worktree 'runs', I verify that it is in the right state that records the successful `datalad run` command:
 ```bash
 # in worktree 'runs'
 /m/D/L5b-runs (runs)> git log --oneline
