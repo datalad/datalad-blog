@@ -218,7 +218,7 @@ done
 
 echo "All done."
 ```
-I have added a bash script and updated the 'README.md', but the git branch `runs` is still lagging behind and I'm in a 'HEAD detached' state:
+I have added this bash script under `pipelines/run_generate_plots.sh` path and updated the 'README.md', but the git branch `runs` is still lagging behind and I'm in a 'HEAD detached' state:
 ```bash
 # back in the main worktree
 /M/d/L/code> jj log
