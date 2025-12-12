@@ -108,7 +108,7 @@ In the newly created worktree 'runs', I verify that it is in the right state tha
 fde26554f (HEAD -> runs, master) [DATALAD RUNCMD] plot rois, traces and F displots for mouse J, Lisuride
 ```
 
-Nice, I will first attempt a rerun! Oh wait, not so fast, I need to set up my python virtual environment. So I go:
+Nice, I will first attempt a rerun! Oh wait, not so fast, I need to set up my [Python virtual environment](https://docs.python.org/3/library/venv.html) using a wonderful and fast [`uv`](https://docs.astral.sh/uv/) tool. So I go:
 ```bash
 cd code
 uv sync
