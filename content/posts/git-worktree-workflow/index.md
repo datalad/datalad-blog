@@ -445,7 +445,7 @@ This isn't a replacement for full reproducibility frameworks - for final publica
 Here is the destilled recipe for the workflow:
 1. Create a nested git worktree for your nested dataset on a new branch, here 'runs'
 2. Set up the computational environment for this worktree
-3. Craft and test the datalad run command
+3. Craft and test the `datalad run` command invocation
 4. Write a script that executes the datalad run command over multiple instances, here over subjects and experiments
 5. Make the update available on the branch/worktree 'runs'
 6. Run the script in the worktree 'runs'
