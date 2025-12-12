@@ -166,8 +166,8 @@ It completes without creating a new commit - the outputs are byte-for-byte ident
 Now it's time to write that bash script, and to test how going forth and back between worktrees works. To not mix things up, I will never develop in the worktree 'runs', but only update it with what ever has been developed and become available on 'master' - well, actually we don't care about branches in jj's universe but anyway you get the gist.
 
 ```bash
-# This is the batch-processing script
 #!/usr/bin/env bash
+# This is the batch-processing script
 set -u
 
 # -------------------------------
