@@ -211,7 +211,7 @@ for subid in "${subjects[@]}"; do
   for drug in "${drugs[@]}"; do
     if ! run_one "${subid}" "${drug}"; then
       failed_jobs+=("${subid}/${drug}")
-      echo "Recorded failur:  ${subid} ${drug}"
+      echo "Recorded failure:  ${subid} ${drug}"
     fi
   done
 done
@@ -314,7 +314,7 @@ It is because the file has in fact changed due to the `jj squash` operation. I c
 
 ### The trade-off between efficiency and reproducibility: You win some you loose some
 
-The script fails, and I try to rerun this one command that worked ealier, it fails as well:
+The script fails, and I try to rerun this one command that worked earlier, it fails as well:
 ```bash
 /m/D/L5b-runs (runs)> datalad rerun fde26554f
 [INFO   ] run commit fde2655; (plot rois, traces...) 
@@ -355,7 +355,7 @@ action summary:
   save (notneeded: 5)
   unlock (ok: 28)
 ```
-What happened? - Apparently, I've lost the '.venv' directory during the hard reset which causes "ModuleNotFoundError: No module named 'process2p'". määäh! This actually speaks for the use of a container. The problem with the container is that I have to rebuild it everytime I update my code ... annoying! I guess that's the trade-off between efficiency and reproducibility. To illustrate this 'highly complex' dilemma with Deepseek's smart-ass comment in a graph:
+What happened? - Apparently, I've lost the '.venv' directory during the hard reset which causes "ModuleNotFoundError: No module named 'process2p'". määäh! This actually speaks for the use of a container. The problem with the container is that I have to rebuild it every time I update my code ... annoying! I guess that's the trade-off between efficiency and reproducibility. To illustrate this 'highly complex' dilemma with Deepseek's smart-ass comment in a graph:
 ```
         Fast Iteration ←──────────→ Reproducibility
               ↑                          ↑
