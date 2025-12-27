@@ -4,7 +4,7 @@ date: 2025-12-08T19:42:00+02:00
 author:
 - Jiameng Wu
 tags:
-- Datalad
+- DataLad
 - git-worktree
 - YODA
 - Workflow
