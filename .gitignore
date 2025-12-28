@@ -2,3 +2,6 @@ public
 .*.lock
 .*.swp
 resources
+.cache
+.local
+.npm
