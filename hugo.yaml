@@ -3,7 +3,8 @@ languageCode: en-us
 title: To be distributed...
 theme: "PaperMod"
 
-paginate: 5
+pagination:
+  pagerSize: 5
 
 enableRobotsTXT: true
 buildDrafts: false
