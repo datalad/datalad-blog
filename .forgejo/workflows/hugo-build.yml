@@ -12,9 +12,14 @@ on:
 jobs:
   hugo-build:
     name: Hugo site build
-    runs-on: hugo-latest
+    runs-on: debian-latest
 
     steps:
+      - name: Setup hugo
+        uses: https://github.com/peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.154.5'
+          extended: true
       - name: Checkout
         uses: https://hub.datalad.org/forgejo/datalad-clone-action@v1
         with:
